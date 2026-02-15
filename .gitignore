@@ -1,0 +1,19 @@
+# OS
+.DS_Store
+
+# ENV
+.env
+.env.*
+
+# Backend
+/backend/log/*
+/backend/tmp/*
+/backend/storage
+
+# Frontend
+/frontend/node_modules
+/frontend/.next
+/frontend/out
+
+# Editor
+.vscode
