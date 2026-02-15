@@ -1,16 +1,5 @@
 Devise.setup do |config|
 
-  config.jwt do |jwt|
-    jwt.secret = "84f083972d5288a9c8645f7fbc1a7e87f4184e08e7936f9499b5975d81f8fcd557a26c0d6577ef5fe62033ce592729e5b97bfcfa2c9abdb74617b5723715ed6e"
-    jwt.dispatch_requests = [
-      ["POST", %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ["DELETE", %r{^/logout$}]
-    ]
-    jwt.expiration_time = 1.day.to_i
-  end
-
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'
@@ -300,4 +289,18 @@ Devise.setup do |config|
   # When set to false, does not sign a user in automatically after their password is
   # changed. Defaults to true, so a user is signed in automatically after changing a password.
   # config.sign_in_after_change_password = true
+  
+  config.jwt do |jwt|
+    jwt.secret = Rails.application.credentials.devise_jwt_secret_key || ENV['DEVISE_JWT_SECRET_KEY']
+
+    jwt.dispatch_requests = [
+      ['POST', %r{^/login$}]
+    ]
+
+    jwt.revocation_requests = [
+      ['DELETE', %r{^/logout$}]
+    ]
+
+    jwt.expiration_time = 1.day.to_i
+  end
 end
