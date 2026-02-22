@@ -5,4 +5,6 @@ class User < ApplicationRecord
          :registerable,
          :jwt_authenticatable,
          jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
+
+  has_many :weeks, dependent: :destroy
 end
