@@ -21,7 +21,7 @@ export default function WeekDetails() {
     setWeek((prev: any) => ({
       ...prev,
       day_entries: prev.day_entries.map((d: any) =>
-        d.id === dayId ? { ...d, [field]: value } : d
+        d.id === dayId ? { ...d, [field]: value } : d,
       ),
     }));
   }
@@ -37,18 +37,30 @@ export default function WeekDetails() {
       {week.day_entries.map((day: any) => (
         <div
           key={day.id}
-          className="bg-white p-4 rounded-2xl shadow-soft mb-4"
+          className="bg-white p-5 rounded-2xl shadow-soft mb-6 space-y-4 transition hover:shadow-lg"
         >
-          <h3 className="font-medium mb-2">Day {day.day_number}</h3>
+          <h3 className="font-semibold text-lavender-600">
+            Day {day.day_number}
+          </h3>
 
-          <textarea
-            placeholder="Sleep notes..."
-            defaultValue={day.sleep_notes}
-            onBlur={(e) =>
-              updateDay(day.id, "sleep_notes", e.target.value)
-            }
-            className="w-full p-2 rounded-lg border border-lavender-200 focus:ring-2 focus:ring-lavender-400 outline-none transition"
-          />
+          {[
+            { label: "Sleep", field: "sleep_notes" },
+            { label: "Exercise", field: "exercise_notes" },
+            { label: "Food", field: "food_notes" },
+            { label: "Health", field: "health_notes" },
+            { label: "Substances", field: "substances_notes" },
+            { label: "Extra", field: "extra_notes" },
+          ].map((section) => (
+            <div key={section.field}>
+              <label className="text-sm text-gray-500">{section.label}</label>
+
+              <textarea
+                defaultValue={day[section.field]}
+                onBlur={(e) => updateDay(day.id, section.field, e.target.value)}
+                className="w-full mt-1 p-2 rounded-xl border border-lavender-200 focus:ring-2 focus:ring-lavender-300 focus:border-lavender-300 outline-none transition-all duration-200"
+              />
+            </div>
+          ))}
         </div>
       ))}
     </div>
