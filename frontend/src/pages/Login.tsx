@@ -18,8 +18,6 @@ export default function Login() {
 
       const token = response.headers.authorization;
 
-      console.log("TOKEN:", token);
-
       if (token) {
         localStorage.setItem("token", token);
       }
