@@ -11,7 +11,12 @@ export default function Dashboard() {
     api
       .get("/api/v1/weeks")
       .then((res) => setWeeks(res.data))
-      .catch(() => alert("Unauthorized"));
+      .catch((err) => {
+        if (err.response?.status === 401) {
+          localStorage.removeItem("token");
+          window.location.href = "/";
+        }
+      });
   }, []);
 
   return (
