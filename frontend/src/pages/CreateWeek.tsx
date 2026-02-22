@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
@@ -15,8 +16,9 @@ export default function CreateWeek() {
       });
 
       navigate(`/weeks/${res.data.id}`);
-    } catch {
-      alert("Error creating week");
+    } catch (err: any) {
+      console.log(err.response);
+      alert(`Error: ${err.response?.status}`);
     }
   }
 
