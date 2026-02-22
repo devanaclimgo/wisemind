@@ -22,7 +22,7 @@ export default function Signup() {
       });
 
       navigate("/");
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       new Error("Signup failed");
       alert("Signup failed");
@@ -67,6 +67,16 @@ export default function Signup() {
         >
           Sign Up
         </button>
+
+        <p className="text-sm text-center mt-4">
+          Already have an account?{" "}
+          <span
+            onClick={() => navigate("/")}
+            className="text-lavender-500 cursor-pointer hover:underline"
+          >
+            Sign in
+          </span>
+        </p>
       </form>
     </div>
   );
