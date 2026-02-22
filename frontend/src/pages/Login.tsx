@@ -20,7 +20,7 @@ export default function Login() {
 
       localStorage.setItem("token", token);
       navigate("/dashboard");
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       new Error("Login failed");
       alert("Login failed");
@@ -58,6 +58,16 @@ export default function Login() {
         >
           Login
         </button>
+
+        <p className="text-sm text-center mt-4">
+          Don’t have an account?{" "}
+          <span
+            onClick={() => navigate("/signup")}
+            className="text-lavender-500 cursor-pointer hover:underline"
+          >
+            Sign up
+          </span>
+        </p>
       </form>
     </div>
   );
