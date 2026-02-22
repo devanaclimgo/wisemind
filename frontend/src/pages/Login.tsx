@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
 
   async function handleLogin(e: React.FormEvent) {
@@ -13,7 +13,7 @@ export default function Login() {
 
     try {
       const response = await api.post("/login", {
-        user: { email, password },
+        user: { login, password },
       });
 
       const token = response.headers.authorization;
@@ -42,10 +42,11 @@ export default function Login() {
         </h1>
 
         <input
-          type="email"
-          placeholder="Email"
+          type="text"
+          placeholder="Email or username"
+          value={login}
           className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:outline-none focus:ring-2 focus:ring-lavender-400 transition"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => setLogin(e.target.value)}
         />
 
         <input
