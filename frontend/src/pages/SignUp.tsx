@@ -6,6 +6,7 @@ export default function Signup() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
@@ -16,6 +17,7 @@ export default function Signup() {
       await api.post("/signup", {
         user: {
           email,
+          login,
           password,
           password_confirmation: passwordConfirmation,
         },
@@ -44,6 +46,13 @@ export default function Signup() {
           placeholder="Email"
           className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:ring-2 focus:ring-lavender-400 outline-none transition"
           onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="text"
+          placeholder="Username"
+          className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:outline-none focus:ring-2 focus:ring-lavender-400 transition"
+          onChange={(e) => setLogin(e.target.value)}
         />
 
         <input
