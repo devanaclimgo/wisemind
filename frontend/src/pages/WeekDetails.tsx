@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import api from "../api/axios";
 import { motion, AnimatePresence } from "framer-motion";
+import { isDayFilled } from "../hooks/days-filled";
 
 export default function WeekDetails() {
   const { id } = useParams();
@@ -37,19 +38,6 @@ export default function WeekDetails() {
   }
 
   if (!week) return <div className="p-6">Loading...</div>;
-
-  function isDayFilled(day: any) {
-    const fields = [
-      "sleep_notes",
-      "exercise_notes",
-      "food_notes",
-      "health_notes",
-      "substances_notes",
-      "extra_notes",
-    ];
-
-    return fields.some((field) => day[field] && day[field].trim() !== "");
-  }
 
   const filledDays = week.day_entries.filter((day: any) =>
     isDayFilled(day),
