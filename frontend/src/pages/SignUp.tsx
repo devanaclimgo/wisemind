@@ -9,25 +9,42 @@ export default function Signup() {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleSignup(e: React.FormEvent) {
     e.preventDefault();
+
+    if (password !== passwordConfirmation) {
+      setErrorMessage("Passwords do not match.");
+      return;
+    }
 
     try {
       await api.post("/signup", {
         user: {
           email,
-          login,
+          username: login,
           password,
           password_confirmation: passwordConfirmation,
         },
       });
 
       navigate("/");
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      new Error("Signup failed");
-      alert("Signup failed");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response?.status === 422) {
+        const errors = error.response.data.errors;
+
+        if (errors?.email) {
+          setErrorMessage("This email is already in use 💜");
+        } else if (errors?.username) {
+          setErrorMessage("This username is already taken 💜");
+        } else {
+          setErrorMessage("Could not create an account.");
+        }
+      } else {
+        setErrorMessage("Something went wrong. Try again.");
+      }
     }
   }
 
@@ -41,32 +58,50 @@ export default function Signup() {
           Create Account
         </h1>
 
+        {errorMessage && (
+          <div className="bg-red-100 text-red-600 p-3 rounded-xl text-sm mb-4 text-center">
+            {errorMessage}
+          </div>
+        )}
+
         <input
           type="email"
           placeholder="Email"
           className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:ring-2 focus:ring-lavender-400 outline-none transition"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setErrorMessage("");
+          }}
         />
 
         <input
           type="text"
           placeholder="Username"
           className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:outline-none focus:ring-2 focus:ring-lavender-400 transition"
-          onChange={(e) => setLogin(e.target.value)}
+          onChange={(e) => {
+            setLogin(e.target.value);
+            setErrorMessage("");
+          }}
         />
 
         <input
           type="password"
           placeholder="Password"
           className="w-full mb-4 p-3 rounded-xl border border-lavender-200 focus:ring-2 focus:ring-lavender-400 outline-none transition"
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+            setErrorMessage("");
+          }}
         />
 
         <input
           type="password"
           placeholder="Confirm Password"
           className="w-full mb-6 p-3 rounded-xl border border-lavender-200 focus:ring-2 focus:ring-lavender-400 outline-none transition"
-          onChange={(e) => setPasswordConfirmation(e.target.value)}
+          onChange={(e) => {
+            setPasswordConfirmation(e.target.value);
+            setErrorMessage("");
+          }}
         />
 
         <button
