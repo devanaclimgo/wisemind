@@ -7,6 +7,7 @@ import { isDayFilled } from "../hooks/days-filled";
 export default function Dashboard() {
   const [weeks, setWeeks] = useState([]);
   const navigate = useNavigate();
+  const [apiError, setApiError] = useState(false);
 
   useEffect(() => {
     api
@@ -16,10 +17,19 @@ export default function Dashboard() {
         if (err.response?.status === 401) {
           localStorage.removeItem("token");
           window.location.href = "/";
+        } else {
+          setApiError(true);
         }
       });
   }, []);
 
+  if (apiError) {
+    return (
+      <div className="p-6 text-center text-red-500">
+        Could not load your weeks. Try again later.
+      </div>
+    );
+  }
   return (
     <div className="p-6">
       <h2 className="text-xl font-semibold text-lavender-600 mb-4">My Weeks</h2>
