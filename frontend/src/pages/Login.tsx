@@ -7,6 +7,7 @@ export default function Login() {
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -24,10 +25,13 @@ export default function Login() {
 
       localStorage.setItem("token", token);
       navigate("/dashboard");
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    } catch (error) {
-      new Error("Login failed");
-      alert("Login failed");
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response?.status === 401) {
+        setErrorMessage("Invalid email/username or password.");
+      } else {
+        setErrorMessage("Something went wrong. Try again.");
+      }
     }
   }
 
@@ -40,6 +44,12 @@ export default function Login() {
         <h1 className="text-2xl font-semibold mb-6 text-center text-lavender-600">
           WiseMind
         </h1>
+
+        {errorMessage && (
+          <div className="bg-red-100 text-red-600 p-3 rounded-xl text-sm mb-4">
+            {errorMessage}
+          </div>
+        )}
 
         <input
           type="text"
