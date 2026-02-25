@@ -36,9 +36,9 @@ export default function Signup() {
         const errors = error.response.data.errors;
 
         if (errors?.email) {
-          setErrorMessage("This email is already in use 💜");
+          setErrorMessage("This email is already in use.");
         } else if (errors?.username) {
-          setErrorMessage("This username is already taken 💜");
+          setErrorMessage("This username is already taken.");
         } else {
           setErrorMessage("Could not create an account.");
         }
