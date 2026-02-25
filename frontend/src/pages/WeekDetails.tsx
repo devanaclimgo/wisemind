@@ -39,9 +39,9 @@ export default function WeekDetails() {
 
   if (!week) return <div className="p-6">Loading...</div>;
 
-  const filledDays = week.day_entries.filter((day: any) =>
-    isDayFilled(day),
-  ).length;
+  const filledDays = Array.isArray(week.day_entries)
+    ? week.day_entries.filter((day: any) => isDayFilled(day)).length
+    : 0;
 
   const progress = (filledDays / week.day_entries.length) * 100;
 
