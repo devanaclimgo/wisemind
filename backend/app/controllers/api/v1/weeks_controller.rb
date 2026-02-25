@@ -3,8 +3,8 @@ module Api
     class WeeksController < BaseController
 
       def index
-        weeks = current_user.weeks.order(start_date: :desc)
-        render json: weeks
+        weeks = current_user.weeks.includes(:day_entries)
+        render json: weeks, include: :day_entries
       end
 
       def show
