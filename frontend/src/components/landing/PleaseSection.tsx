@@ -3,25 +3,25 @@ import { Stethoscope, Utensils, Ban, Moon, Dumbbell } from "lucide-react"
 const pleaseItems = [
   {
     letter: "PL",
-    title: "Tratar Doencas Fisicas",
+    title: "Tratar Doenças Fisicas",
     description:
-      "Cuide da sua saude fisica. Consulte medicos, tome seus remedios e nao ignore sinais do corpo.",
+      "Cuide da sua saude fisica. Consulte médicos, tome seus remédios e não ignore sinais do corpo.",
     icon: Stethoscope,
     color: "bg-primary/10 text-primary",
   },
   {
     letter: "E",
-    title: "Alimentacao Equilibrada",
+    title: "Alimentação Equilibrada",
     description:
-      "Mantenha uma alimentacao regular e nutritiva. Evite pular refeicoes ou comer em excesso.",
+      "Mantenha uma alimentação regular e nutritiva. Evite pular refeições ou comer em excesso.",
     icon: Utensils,
     color: "bg-teal/10 text-teal",
   },
   {
     letter: "A",
-    title: "Evitar Substancias",
+    title: "Evitar Substâncias",
     description:
-      "Evite substancias que alterem o humor, como alcool, drogas ou excesso de cafeina.",
+      "Evite substâncias que alterem o humor, como álcool, drogas ou excesso de cafeína.",
     icon: Ban,
     color: "bg-ice/20 text-ice",
   },
@@ -29,15 +29,15 @@ const pleaseItems = [
     letter: "S",
     title: "Equilibrar o Sono",
     description:
-      "Mantenha uma rotina de sono consistente. Durma o suficiente, mas nao demais.",
+      "Mantenha uma rotina de sono consistente. Durma o suficiente, mas não demais.",
     icon: Moon,
     color: "bg-lilac/20 text-lavender",
   },
   {
     letter: "E",
-    title: "Exercicio",
+    title: "Exercício",
     description:
-      "Pratique atividade fisica regularmente. Ate uma caminhada pode fazer grande diferenca.",
+      "Pratique atividade física regularmente. Até uma caminhada pode fazer grande diferença.",
     icon: Dumbbell,
     color: "bg-frozen/50 text-teal",
   },
@@ -47,7 +47,7 @@ const abcItems = [
   {
     letter: "A",
     title: "Accumulate Positive Emotions",
-    subtitle: "Acumule emocoes positivas",
+    subtitle: "Acumule emoções positivas",
   },
   {
     letter: "B",
@@ -71,12 +71,12 @@ export function PleaseSection() {
             Entenda a habilidade
           </span>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl text-balance">
-            O que e PLEASE?
+            O que é PLEASE?
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground leading-relaxed text-pretty">
-            PLEASE e uma habilidade da Terapia Comportamental Dialetica (DBT),
+            PLEASE é uma habilidade da Terapia Comportamental Dialética (DBT),
             criada pela Dra. Marsha Linehan, que ajuda a reduzir a
-            vulnerabilidade emocional cuidando das necessidades basicas do corpo.
+            vulnerabilidade emocional cuidando das necessidades básicas do corpo.
           </p>
         </div>
 
@@ -106,11 +106,11 @@ export function PleaseSection() {
         {/* ABC PLEASE connection */}
         <div className="mt-16 rounded-2xl bg-muted/50 border border-border p-8 sm:p-10">
           <h3 className="text-xl font-bold text-foreground mb-2">
-            A relacao com o ABC PLEASE
+            A relação com o ABC PLEASE
           </h3>
           <p className="text-muted-foreground mb-8 max-w-2xl text-pretty">
             PLEASE faz parte de um conjunto maior de habilidades para regular
-            emocoes na DBT. Junto com o ABC, forma uma base para reducao da
+            emoções na DBT. Junto com o ABC, forma uma base para redução da
             vulnerabilidade emocional.
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
