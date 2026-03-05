@@ -85,7 +85,7 @@ export function PleaseSection() {
           {pleaseItems.map((item) => (
             <div
               key={item.letter + item.title}
-              className="group relative rounded-2xl bg-card border border-border p-6 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1"
+              className="group relative rounded-2xl bg-card border border-border p-6 shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 hover:-translate-y-1"
             >
               <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${item.color}`}>
                 <item.icon className="h-6 w-6" />
