@@ -6,28 +6,28 @@ const benefits = [
     title: "Redução da impulsividade",
     description:
       "Ao cuidar do corpo, você ganha mais capacidade de pausar antes de reagir impulsivamente.",
-    color: "bg-[#7F679C]/10 text-[#7F679C]",
+    color: "bg-primary/10 text-primary",
   },
   {
     icon: Brain,
     title: "Melhor regulação emocional",
     description:
       "Um corpo equilibrado ajuda você a processar emoções com mais clareza e controle.",
-    color: "bg-[#67AFA5]/10 text-[#67AFA5]",
+    color: "bg-ring/10 text-ring",
   },
   {
     icon: HeartHandshake,
     title: "Mais resiliência",
     description:
       "Com hábitos consistentes, você se torna mais resistente diante de adversidades.",
-    color: "bg-[#99B4E0]/20 text-[#99B4E0]",
+    color: "bg-accent/20 text-accent",
   },
   {
     icon: Activity,
     title: "Mais estabilidade no dia a dia",
     description:
       "Rotinas saudáveis criam uma base sólida para uma vida mais equilibrada e previsível.",
-    color: "bg-[#BFDFDB]/50 text-[#67AFA5]",
+    color: "bg-ring/50 text-ring",
   },
 ]
 
