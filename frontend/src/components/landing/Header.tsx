@@ -43,7 +43,7 @@ export function Header() {
               <img src={lotusIcon} alt="Lotus Icon" className="h-8 w-8" />
             </span>
           </div>
-          <span className="font-semibold text-lg underline underline-offset-4 decoration-[#7F679C]">Âncora</span>
+          <span className="font-semibold text-lg underline underline-offset-4 decoration-primary">Âncora</span>
         </div>
 
         <nav className="hidden md:flex items-center gap-8">
@@ -51,7 +51,7 @@ export function Header() {
             <button
               key={link.href}
               onClick={() => handleSmoothScroll(link.href)}
-              className="text-sm font-medium text-gray-600 hover:text-[#7F679C] transition-colors"
+              className="text-sm font-medium text-gray-600 hover:text-primary transition-colors"
             >
               {link.label}
             </button>
@@ -60,7 +60,7 @@ export function Header() {
 
         <Link
           to="/login"
-          className="rounded-xl bg-[#7F679C] px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition shadow-sm"
+          className="rounded-xl bg-primary px-5 py-2.5 text-sm font-medium text-white hover:opacity-90 transition shadow-sm"
         >
           Login
         </Link>
