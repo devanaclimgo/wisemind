@@ -2,6 +2,7 @@ import { useState } from "react";
 import api from "../api/axios";
 import { useNavigate, Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import lotusIcon from "../assets/lotus-icon.png";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -58,14 +59,16 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-white px-6">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
           <Link to="/" className="inline-flex items-center gap-2 mb-4">
-            <div className="h-10 w-10 rounded-xl bg-primary-500 flex items-center justify-center">
-              <span className="text-white font-bold">W</span>
-            </div>
-            <span className="font-bold text-xl text-gray-800">WiseMind</span>
+            <div className="h-8 w-8 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-sm">
+              <img src={lotusIcon} alt="Lotus Icon" className="h-8 w-8" />
+            </span>
+          </div>
+          <span className="font-semibold text-lg underline underline-offset-4 decoration-primary">Âncora</span>
           </Link>
 
           <h1 className="text-2xl font-bold text-gray-800">
@@ -99,7 +102,7 @@ export default function Signup() {
               }}
               placeholder="you@email.com"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
-              focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
               transition-all"
             />
           </div>
@@ -117,7 +120,7 @@ export default function Signup() {
               }}
               placeholder="your_username"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
-              focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
               transition-all"
             />
           </div>
@@ -137,7 +140,7 @@ export default function Signup() {
                 }}
                 placeholder="Minimum 6 characters"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
-                focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
+                focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
                 transition-all"
               />
 
@@ -166,7 +169,7 @@ export default function Signup() {
                 }}
                 placeholder="Repeat your password"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
-                focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
+                focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
                 transition-all"
               />
 
@@ -183,8 +186,8 @@ export default function Signup() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-primary-500 text-white py-3 rounded-xl font-semibold
-            hover:bg-primary-600 active:scale-95
+            className="w-full bg-primary text-white py-3 rounded-xl font-semibold
+            hover:bg-primary/90 active:scale-95
             transition-all duration-200"
           >
             {loading ? "Creating account..." : "Sign Up"}
@@ -194,7 +197,7 @@ export default function Signup() {
             Already have an account?{" "}
             <span
               onClick={() => navigate("/")}
-              className="text-primary-500 cursor-pointer hover:underline font-medium"
+              className="text-primary cursor-pointer hover:underline font-medium"
             >
               Sign in
             </span>
