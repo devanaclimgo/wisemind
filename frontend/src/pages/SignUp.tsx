@@ -37,7 +37,7 @@ export default function Signup() {
       });
 
       navigate("/"); // back to login
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response?.status === 422) {
         const errors = error.response.data.errors;
@@ -58,17 +58,14 @@ export default function Signup() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-lavender-50 to-white px-6">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-white px-6">
       <div className="w-full max-w-md">
-        
         <div className="mb-8 text-center">
           <Link to="/" className="inline-flex items-center gap-2 mb-4">
-            <div className="h-10 w-10 rounded-xl bg-lavender-500 flex items-center justify-center">
+            <div className="h-10 w-10 rounded-xl bg-primary-500 flex items-center justify-center">
               <span className="text-white font-bold">W</span>
             </div>
-            <span className="font-bold text-xl text-gray-800">
-              WiseMind
-            </span>
+            <span className="font-bold text-xl text-gray-800">WiseMind</span>
           </Link>
 
           <h1 className="text-2xl font-bold text-gray-800">
@@ -102,7 +99,7 @@ export default function Signup() {
               }}
               placeholder="you@email.com"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
-              focus:outline-none focus:ring-2 focus:ring-lavender-400 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
               transition-all"
             />
           </div>
@@ -120,7 +117,7 @@ export default function Signup() {
               }}
               placeholder="your_username"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
-              focus:outline-none focus:ring-2 focus:ring-lavender-400 focus:border-transparent
+              focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
               transition-all"
             />
           </div>
@@ -140,7 +137,7 @@ export default function Signup() {
                 }}
                 placeholder="Minimum 6 characters"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
-                focus:outline-none focus:ring-2 focus:ring-lavender-400 focus:border-transparent
+                focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
                 transition-all"
               />
 
@@ -169,7 +166,7 @@ export default function Signup() {
                 }}
                 placeholder="Repeat your password"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
-                focus:outline-none focus:ring-2 focus:ring-lavender-400 focus:border-transparent
+                focus:outline-none focus:ring-2 focus:ring-primary-400 focus:border-transparent
                 transition-all"
               />
 
@@ -186,8 +183,8 @@ export default function Signup() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-lavender-500 text-white py-3 rounded-xl font-semibold
-            hover:bg-lavender-600 active:scale-95
+            className="w-full bg-primary-500 text-white py-3 rounded-xl font-semibold
+            hover:bg-primary-600 active:scale-95
             transition-all duration-200"
           >
             {loading ? "Creating account..." : "Sign Up"}
@@ -197,7 +194,7 @@ export default function Signup() {
             Already have an account?{" "}
             <span
               onClick={() => navigate("/")}
-              className="text-lavender-500 cursor-pointer hover:underline font-medium"
+              className="text-primary-500 cursor-pointer hover:underline font-medium"
             >
               Sign in
             </span>
