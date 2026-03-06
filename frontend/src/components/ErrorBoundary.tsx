@@ -27,7 +27,7 @@ export default class ErrorBoundary extends Component<Props, State> {
       return (
         <div className="min-h-screen flex items-center justify-center p-6">
           <div className="bg-white p-8 rounded-2xl shadow-soft text-center max-w-sm">
-            <h2 className="text-lg font-semibold text-primary-600 mb-3">
+            <h2 className="text-lg font-semibold text-primary mb-3">
               Oh no! Something went wrong
             </h2>
             <p className="text-sm text-gray-500 mb-4">
@@ -35,7 +35,7 @@ export default class ErrorBoundary extends Component<Props, State> {
             </p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-primary-500 text-white px-4 py-2 rounded-xl hover:bg-primary-600 transition"
+              className="bg-primary text-white px-4 py-2 rounded-xl hover:bg-primary transition"
             >
               Reload
             </button>

@@ -47,18 +47,18 @@ export default function WeekDetails() {
 
   return (
     <div className="p-6">
-      <h2 className="text-xl font-semibold text-primary-600 mb-2">
+      <h2 className="text-xl font-semibold text-primary mb-2">
         Week {week.start_date}
       </h2>
 
       {/* Progress Bar */}
       <div className="mb-6">
-        <div className="w-full h-3 bg-primary-100 rounded-full overflow-hidden">
+        <div className="w-full h-3 bg-primary rounded-full overflow-hidden">
           <motion.div
             initial={{ width: 0 }}
             animate={{ width: `${progress}%` }}
             transition={{ duration: 0.6 }}
-            className="h-full bg-primary-500"
+            className="h-full bg-primary"
           />
         </div>
         <p className="text-xs text-gray-500 mt-1">
@@ -79,15 +79,15 @@ export default function WeekDetails() {
             {/* HEADER */}
             <div
               onClick={() => toggleDay(day.id)}
-              className="flex justify-between items-center p-5 cursor-pointer hover:bg-primary-50 transition"
+              className="flex justify-between items-center p-5 cursor-pointer hover:bg-primary transition"
             >
               <div className="flex items-center gap-3">
                 <div
                   className={`w-3 h-3 rounded-full ${
-                    filled ? "bg-primary-500" : "bg-gray-300"
+                    filled ? "bg-primary" : "bg-gray-300"
                   }`}
                 />
-                <h3 className="font-semibold text-primary-600">
+                <h3 className="font-semibold text-primary">
                   Day {day.day_number}
                 </h3>
               </div>
@@ -129,7 +129,7 @@ export default function WeekDetails() {
                         onBlur={(e) =>
                           updateDay(day.id, section.field, e.target.value)
                         }
-                        className="w-full mt-1 p-2 rounded-xl border border-primary-200 focus:ring-2 focus:ring-primary-300 focus:border-primary-300 outline-none transition-all duration-200"
+                        className="w-full mt-1 p-2 rounded-xl border border-primary focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all duration-200"
                       />
                     </div>
                   ))}

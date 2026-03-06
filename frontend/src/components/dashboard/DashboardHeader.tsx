@@ -20,7 +20,7 @@ export default function DashboardHeader({
           </button>
 
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-lg bg-primary-500 flex items-center justify-center">
+            <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
               <span className="text-white font-bold text-xs">W</span>
             </div>
             <span className="font-semibold text-gray-800 hidden sm:inline">
