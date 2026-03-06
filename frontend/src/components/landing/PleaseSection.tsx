@@ -1,4 +1,4 @@
-import { Stethoscope, Utensils, Ban, Moon, Dumbbell } from "lucide-react"
+import { Stethoscope, Utensils, Ban, Moon, Dumbbell } from "lucide-react";
 
 const pleaseItems = [
   {
@@ -15,7 +15,7 @@ const pleaseItems = [
     description:
       "Mantenha uma alimentação regular e nutritiva. Evite pular refeições ou comer em excesso.",
     icon: Utensils,
-    color: "bg-teal/10 text-teal",
+    color: "bg-ring/10 text-ring",
   },
   {
     letter: "A",
@@ -23,7 +23,7 @@ const pleaseItems = [
     description:
       "Evite substâncias que alterem o humor, como álcool, drogas ou excesso de cafeína.",
     icon: Ban,
-    color: "bg-ice/20 text-ice",
+    color: "bg-accent/20 text-accent",
   },
   {
     letter: "S",
@@ -31,7 +31,7 @@ const pleaseItems = [
     description:
       "Mantenha uma rotina de sono consistente. Durma o suficiente, mas não demais.",
     icon: Moon,
-    color: "bg-lilac/20 text-lavender",
+    color: "bg-secondary/20 text-secondary",
   },
   {
     letter: "E",
@@ -39,9 +39,9 @@ const pleaseItems = [
     description:
       "Pratique atividade física regularmente. Até uma caminhada pode fazer grande diferença.",
     icon: Dumbbell,
-    color: "bg-frozen/50 text-teal",
+    color: "bg-muted/50 text-muted",
   },
-]
+];
 
 const abcItems = [
   {
@@ -59,7 +59,7 @@ const abcItems = [
     title: "Cope Ahead",
     subtitle: "Antecipe-se",
   },
-]
+];
 
 export function PleaseSection() {
   return (
@@ -67,7 +67,7 @@ export function PleaseSection() {
       <div className="mx-auto max-w-6xl px-6">
         {/* Section header */}
         <div className="text-center mb-16">
-          <span className="inline-block text-sm font-semibold text-teal uppercase tracking-wider mb-3">
+          <span className="inline-block text-sm font-semibold text-ring uppercase tracking-wider mb-3">
             Entenda a habilidade
           </span>
           <h2 className="text-3xl font-bold text-foreground sm:text-4xl text-balance">
@@ -76,7 +76,8 @@ export function PleaseSection() {
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground leading-relaxed text-pretty">
             PLEASE é uma habilidade da Terapia Comportamental Dialética (DBT),
             criada pela Dra. Marsha Linehan, que ajuda a reduzir a
-            vulnerabilidade emocional cuidando das necessidades básicas do corpo.
+            vulnerabilidade emocional cuidando das necessidades básicas do
+            corpo.
           </p>
         </div>
 
@@ -87,7 +88,9 @@ export function PleaseSection() {
               key={item.letter + item.title}
               className="group relative rounded-2xl bg-card border border-border p-6 shadow-sm hover:shadow-md hover:border-primary transition-all duration-300 hover:-translate-y-1"
             >
-              <div className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${item.color}`}>
+              <div
+                className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl ${item.color}`}
+              >
                 <item.icon className="h-6 w-6" />
               </div>
               <div className="mb-2 text-xs font-bold uppercase tracking-widest text-primary">
@@ -136,5 +139,5 @@ export function PleaseSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
