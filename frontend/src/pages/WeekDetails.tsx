@@ -37,7 +37,7 @@ export default function WeekDetails() {
     }));
   }
 
-  if (!week) return <div className="p-6">Loading...</div>;
+  if (!week) return <div className="p-6">Carregando...</div>;
 
   const filledDays = Array.isArray(week.day_entries)
     ? week.day_entries.filter((day: any) => isDayFilled(day)).length
