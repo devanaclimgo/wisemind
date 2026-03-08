@@ -1,6 +1,7 @@
 class Week < ApplicationRecord
   belongs_to :user
   has_many :day_entries, dependent: :destroy
+  has_many :day_entries, -> { order(:day_number) }
 
   after_create :generate_days
 
