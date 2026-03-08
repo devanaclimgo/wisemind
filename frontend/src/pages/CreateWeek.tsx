@@ -25,7 +25,7 @@ export default function CreateWeek() {
   return (
     <div className="p-6 min-h-screen">
       <h2 className="text-xl font-semibold text-primary mb-6">
-        Create New Week
+        Criar nova semana
       </h2>
 
       <form onSubmit={handleCreate}>
@@ -36,7 +36,7 @@ export default function CreateWeek() {
         />
 
         <button className="w-full bg-primary text-white py-3 rounded-xl hover:bg-primary active:scale-95 transition">
-          Create
+          Criar
         </button>
       </form>
     </div>
