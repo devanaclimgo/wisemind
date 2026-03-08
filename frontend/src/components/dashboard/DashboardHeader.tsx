@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Menu, User } from "lucide-react";
+import lotusIcon from "../../assets/lotus-icon.png";
 
 interface DashboardHeaderProps {
   onMenuToggle: () => void;
@@ -20,17 +21,16 @@ export default function DashboardHeader({
           </button>
 
           <Link to="/dashboard" className="flex items-center gap-2">
-            <div className="h-7 w-7 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-white font-bold text-xs">W</span>
+            <div className="h-8 w-8 rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold text-sm">
+                <img src={lotusIcon} alt="Lotus Icon" className="h-8 w-8" />
+              </span>
             </div>
-            <span className="font-semibold text-gray-800 hidden sm:inline">
-              WiseMind
-            </span>
           </Link>
         </div>
 
         <div className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center">
+          <div className="h-8 w-8 rounded-full bg-primary/20 flex items-center justify-center">
             <User className="h-4 w-4 text-gray-500" />
           </div>
         </div>
