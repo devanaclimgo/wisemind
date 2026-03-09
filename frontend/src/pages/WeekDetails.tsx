@@ -50,6 +50,7 @@ export default function WeekDetails() {
       <h2 className="text-xl font-semibold text-primary mb-2">
         Semana {week.start_date}
       </h2>
+      {/* TODO: adicionar tecla de volta para voltar ao /dashboard */}
 
       {/* Progress Bar */}
       <div className="mb-6">

@@ -35,6 +35,7 @@ export default function WeekList({ weeks }: WeekListProps) {
         </div>
       </Link>
 
+      {/* TODO: adicionar filtro para apenas aparecer semanas do mês atual */}
       <div className="space-y-3">
         {weeks.map((week) => (
           <WeekCard

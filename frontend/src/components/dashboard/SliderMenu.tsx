@@ -21,6 +21,7 @@ interface SliderMenuProps {
 }
 
 type MenuView = "main" | "calendar" | "weeks" | "support" | "settings";
+{/* TODO: criar páginas que faltam, tanto backend como frontend */}
 
 export default function SliderMenu({ open, onClose }: SliderMenuProps) {
   const [view, setView] = useState<MenuView>("main");
@@ -45,6 +46,7 @@ export default function SliderMenu({ open, onClose }: SliderMenuProps) {
         />
       )}
 
+      {/* TODO: refatorar cores e estilo geral do slider para melhor UI/UX */}
       <div
         className={cn(
           "fixed left-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 flex flex-col",

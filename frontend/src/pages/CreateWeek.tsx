@@ -27,6 +27,9 @@ export default function CreateWeek() {
       <h2 className="text-xl font-semibold text-primary mb-6">
         Criar nova semana
       </h2>
+      {/* TODO: adicionar tecla de volta para voltar ao /dashboard */}
+
+      {/* TODO: refatorar ordem da data para dia/mes/ano, para ficar mais intuitivo para o usuário */}
 
       <form onSubmit={handleCreate}>
         <input
