@@ -61,9 +61,9 @@ export default function Login() {
             </span>
           </Link>
 
-          <h1 className="text-2xl font-bold text-gray-200">Welcome back</h1>
+          <h1 className="text-2xl font-bold text-gray-200">Bem-vindo de volta</h1>
           <p className="mt-1 text-sm text-gray-100">
-            Continue your emotional tracking journey
+            Continue sua jornada de rastreamento emocional
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function Login() {
 
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Email or username
+              Email ou nome de usuário
             </label>
             <input
               type="text"
@@ -94,7 +94,7 @@ export default function Login() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Password
+              Senha
             </label>
 
             <div className="relative">
@@ -129,12 +129,12 @@ export default function Login() {
           </button>
 
           <p className="text-sm text-center mt-6 text-gray-500">
-            Don’t have an account?{" "}
+            Não possui uma conta?{" "}
             <span
               onClick={() => navigate("/signup")}
               className="text-primary cursor-pointer hover:underline font-medium"
             >
-              Sign up
+              Criar conta
             </span>
           </p>
         </form>

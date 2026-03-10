@@ -74,10 +74,10 @@ export default function Signup() {
           </Link>
 
           <h1 className="text-2xl font-bold text-gray-200">
-            Create your account
+            Crie sua conta
           </h1>
           <p className="mt-1 text-sm text-gray-100">
-            Start your weekly emotional tracking
+            Comece sua jornada de rastreamento emocional
           </p>
         </div>
 
@@ -102,7 +102,7 @@ export default function Signup() {
                 setEmail(e.target.value);
                 setErrorMessage("");
               }}
-              placeholder="you@email.com"
+              placeholder="eu@email.com"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
               focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
               transition-all"
@@ -111,7 +111,7 @@ export default function Signup() {
 
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Username
+              Nome de usuário
             </label>
             <input
               type="text"
@@ -120,7 +120,7 @@ export default function Signup() {
                 setLogin(e.target.value);
                 setErrorMessage("");
               }}
-              placeholder="your_username"
+              placeholder="seu_nome_de_usuario"
               className="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm
               focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
               transition-all"
@@ -129,7 +129,7 @@ export default function Signup() {
 
           <div className="mb-5">
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Password
+              Senha
             </label>
 
             <div className="relative">
@@ -140,7 +140,7 @@ export default function Signup() {
                   setPassword(e.target.value);
                   setErrorMessage("");
                 }}
-                placeholder="Minimum 6 characters"
+                placeholder="Mínimo 6 caracteres"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
                 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
                 transition-all"
@@ -158,7 +158,7 @@ export default function Signup() {
 
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-700 mb-1.5">
-              Confirm password
+              Confirmar senha
             </label>
 
             <div className="relative">
@@ -169,7 +169,7 @@ export default function Signup() {
                   setPasswordConfirmation(e.target.value);
                   setErrorMessage("");
                 }}
-                placeholder="Repeat your password"
+                placeholder="Confirme sua senha"
                 className="w-full rounded-xl border border-gray-200 px-4 py-3 pr-11 text-sm
                 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent
                 transition-all"
@@ -192,16 +192,16 @@ export default function Signup() {
             hover:bg-primary/90 active:scale-95
             transition-all duration-200"
           >
-            {loading ? "Creating account..." : "Sign Up"}
+            {loading ? "Criando conta..." : "Criar Conta"}
           </button>
 
           <p className="text-sm text-center mt-6 text-gray-500">
-            Already have an account?{" "}
+            Já possui uma conta?{" "}
             <span
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/login")}
               className="text-primary cursor-pointer hover:underline font-medium"
             >
-              Sign in
+              Entrar
             </span>
           </p>
         </form>
