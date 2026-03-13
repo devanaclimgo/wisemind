@@ -33,8 +33,6 @@ export default function CreateWeek() {
           Criar nova semana
         </h2>
 
-        {/* TODO: refatorar data display pra 12-18 Jan, 2026 - para ficar mais intuitivo para o usuário */}
-
         <form onSubmit={handleCreate}>
           <input
             type="date"
