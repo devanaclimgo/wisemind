@@ -49,9 +49,11 @@ export function getWeekDisplayLabel(startDate: Date): string {
 
   const today = new Date();
 
+  const normalizedStart = new Date(startDate);
+  normalizedStart.setHours(0, 0, 0, 0);
+
   // normalize time
   today.setHours(0, 0, 0, 0);
-  startDate.setHours(0, 0, 0, 0);
   endDate.setHours(0, 0, 0, 0);
 
   // current week
