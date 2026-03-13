@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :jwt_authenticatable,
          jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
-  has_many :weeks, dependent: :destroy
+  has_many :weeks, -> { order(:created_at) }, dependent: :destroy
 
   attr_writer :login
 
