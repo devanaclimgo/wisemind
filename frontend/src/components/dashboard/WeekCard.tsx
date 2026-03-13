@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Calendar, ChevronRight } from "lucide-react";
 import ProgressBar from "./ProgressBar";
+import { getWeekDisplayLabel } from "../../utils/date";
 
 interface WeekCardProps {
   id: number;
@@ -28,7 +29,7 @@ export default function WeekCard({
             <Calendar className="h-4 w-4" />
           </div>
 
-          <span className="font-medium text-gray-800 text-sm">{startDate}</span>
+          <span className="font-medium text-gray-800 text-sm">{getWeekDisplayLabel(new Date(startDate))}</span>
         </div>
 
         <ChevronRight className="h-4 w-4 text-gray-400 group-hover:text-ring/60 transition-colors" />
