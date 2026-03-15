@@ -22,6 +22,12 @@ module Api
         end
       end
 
+      def destroy
+        week = current_user.weeks.find(params[:id])
+        week.destroy
+        head :no_content
+      end
+
       private
 
       def week_params
