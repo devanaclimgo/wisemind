@@ -23,10 +23,6 @@ export function formatFullDate(dateInput: Date | string): string {
 export function formattedDate(dateInput: Date | string): string {
   const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
 
-  if (isNaN(date.getTime())) {
-    return "Data inválida";
-  }
-
   return new Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
     month: "short",
