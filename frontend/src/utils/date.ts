@@ -25,7 +25,7 @@ export function formattedDate(dateInput: Date | string): string {
 
   return new Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
-    month: "short",
+    month: "2-digit",
   }).format(date);
 }
 
