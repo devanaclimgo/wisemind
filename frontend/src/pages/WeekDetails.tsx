@@ -5,11 +5,14 @@ import api from "../api/axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { isDayFilled } from "../hooks/days-filled";
 import WeekHeader from "../components/dashboard/WeekHeader";
+import { formatFullDate } from "../utils/date";
+import { useNavigate } from "react-router-dom";
 
 export default function WeekDetails() {
   const { id } = useParams();
   const [week, setWeek] = useState<any>(null);
   const [openDays, setOpenDays] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   function toggleDay(dayId: number) {
     setOpenDays((prev) =>
@@ -44,13 +47,19 @@ export default function WeekDetails() {
     ? week.day_entries.filter((day: any) => isDayFilled(day)).length
     : 0;
 
+  const DateDisplay = formatFullDate(week.start_date);
   const progress = (filledDays / week.day_entries.length) * 100;
 
-  const DateDisplay = new Date(week.start_date).toLocaleDateString("pt-BR", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  });
+  const handleDeleteWeek = async (id: string) => {
+    try {
+      await api.delete(`/api/v1/weeks/${id}`);
+      alert("Semana deletada com sucesso!");
+      navigate("/dashboard");
+    } catch (error) {
+      console.error("Erro ao deletar semana:", error);
+      alert("Ocorreu um erro ao deletar a semana. Tente novamente.");
+    }
+  }
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -150,6 +159,16 @@ export default function WeekDetails() {
             </motion.div>
           );
         })}
+
+        {/* create delete card button */}
+        <button
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-gray-100 text-red-500 py-2.5 hover:bg-red-50 hover:text-red-700 transition-colors mt-4"
+          onClick={() => {
+            handleDeleteWeek(id!);
+          }}
+        >
+          Deletar semana
+        </button>
       </div>
     </div>
   );
