@@ -80,13 +80,13 @@ export function exportWeekToPDF(week: {
       fontStyle: "bold",
     },
     columnStyles: {
-      0: { cellWidth: 20 }, // day
-      1: { cellWidth: 30 }, // sleep
-      2: { cellWidth: 30 }, // health
-      3: { cellWidth: 30 }, // exercise
-      4: { cellWidth: 30 }, // food
-      5: { cellWidth: 30 }, // substances
-      6: { cellWidth: 30 }, // notes
+      0: { cellWidth: 18 }, // day
+      1: { cellWidth: 22 }, // sleep
+      2: { cellWidth: 22 }, // health
+      3: { cellWidth: 22 }, // exercise
+      4: { cellWidth: 22 }, // food
+      5: { cellWidth: 22 }, // substances
+      6: { cellWidth: "auto" }, // notes
     },
     footStyles: {
       fillColor: "#f9f9f9",
@@ -94,6 +94,21 @@ export function exportWeekToPDF(week: {
       fontStyle: "italic",
     },
     margin: { top: 30 },
+    pageBreak: "auto",
+    rowPageBreak: "auto",
+    didDrawPage: (data) => {
+      const pageNumber = doc.getNumberOfPages();
+
+      doc.setFontSize(8);
+
+      doc.text(
+        `Página ${pageNumber}`,
+        data.settings.margin.left,
+        doc.internal.pageSize.height - 10,
+      );
+    },
+    showHead: "everyPage",
+    showFoot: "everyPage"
   });
 
   doc.save(`ancora-relatorio-${week.start_date}.pdf`);
