@@ -34,9 +34,9 @@ export default function Login() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response?.status === 401) {
-        setErrorMessage("Invalid email/username or password.");
+        setErrorMessage("Login ou senha incorretos.");
       } else {
-        setErrorMessage("Something went wrong. Try again.");
+        setErrorMessage("Algo deu errado. Por favor, tente novamente mais tarde.");
       }
     } finally {
       setLoading(false);

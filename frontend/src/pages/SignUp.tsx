@@ -21,7 +21,7 @@ export default function Signup() {
     setErrorMessage("");
 
     if (password !== passwordConfirmation) {
-      setErrorMessage("Passwords do not match.");
+      setErrorMessage("As senhas não coincidem.");
       return;
     }
 
@@ -44,14 +44,14 @@ export default function Signup() {
         const errors = error.response.data.errors;
 
         if (errors?.email) {
-          setErrorMessage("This email is already in use.");
+          setErrorMessage("Este email já está em uso.");
         } else if (errors?.username) {
-          setErrorMessage("This username is already taken.");
+          setErrorMessage("Este nome de usuário já está em uso.");
         } else {
-          setErrorMessage("Could not create an account.");
+          setErrorMessage("Não foi possível criar uma conta.");
         }
       } else {
-        setErrorMessage("Something went wrong. Try again.");
+        setErrorMessage("Algo deu errado. Por favor, tente novamente mais tarde.");
       }
     } finally {
       setLoading(false);
