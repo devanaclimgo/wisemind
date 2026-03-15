@@ -6,14 +6,18 @@ export function getWeekEndDate(date: Date): Date {
   return endDate;
 }
 
-export function formatFullDate(date: Date): string {
-  const options: Intl.DateTimeFormatOptions = {
+export function formatFullDate(dateInput: Date | string): string {
+  const date = typeof dateInput === "string" ? new Date(dateInput) : dateInput;
+
+  if (isNaN(date.getTime())) {
+    return "Data inválida";
+  }
+
+  return new Intl.DateTimeFormat("pt-BR", {
     day: "2-digit",
     month: "short",
     year: "numeric",
-  };
-
-  return date.toLocaleDateString("pt-BR", options);
+  }).format(date);
 }
 
 export function formatWeekRange(startDate: Date): string {
