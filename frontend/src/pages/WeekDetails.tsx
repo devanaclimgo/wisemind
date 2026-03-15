@@ -134,9 +134,9 @@ export default function WeekDetails() {
                   >
                     {[
                       { label: "Sono", field: "sleep_notes" },
+                      { label: "Saúde", field: "health_notes" },
                       { label: "Exercício", field: "exercise_notes" },
                       { label: "Alimentação", field: "food_notes" },
-                      { label: "Saúde", field: "health_notes" },
                       { label: "Substâncias", field: "substances_notes" },
                       { label: "Extra", field: "extra_notes" },
                     ].map((section) => (
