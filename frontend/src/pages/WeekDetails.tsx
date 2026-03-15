@@ -162,7 +162,7 @@ export default function WeekDetails() {
         })}
 
         <button
-          className="w-full flex items-center justify-center gap-2 rounded-xl bg-primary/20 text-gray-900 py-2.5 hover:bg-primary/70 hover:text-gray-200 transition-colors mt-4"
+          className="w-full flex items-center justify-center gap-2 rounded-xl bg-primary/20 text-primary py-2.5 hover:bg-primary/50 hover:text-gray-100 transition-colors mt-4"
           onClick={() => exportWeekToPDF(week)}
         >
           Exportar em PDF
