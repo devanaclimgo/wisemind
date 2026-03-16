@@ -36,7 +36,9 @@ export default function Login() {
       if (error.response?.status === 401) {
         setErrorMessage("Login ou senha incorretos.");
       } else {
-        setErrorMessage("Algo deu errado. Por favor, tente novamente mais tarde.");
+        setErrorMessage(
+          "Algo deu errado. Por favor, tente novamente mais tarde.",
+        );
       }
     } finally {
       setLoading(false);
@@ -61,7 +63,9 @@ export default function Login() {
             </span>
           </Link>
 
-          <h1 className="text-2xl font-bold text-gray-200">Bem-vindo de volta</h1>
+          <h1 className="text-2xl font-bold text-gray-200">
+            Bem-vindo de volta
+          </h1>
           <p className="mt-1 text-sm text-gray-100">
             Continue sua jornada de rastreamento emocional
           </p>
@@ -131,7 +135,7 @@ export default function Login() {
           <p className="text-sm text-center mt-6 text-gray-500">
             Não possui uma conta?{" "}
             <span
-              onClick={() => navigate("/signup")}
+              onClick={() => navigate("/users")}
               className="text-primary cursor-pointer hover:underline font-medium"
             >
               Criar conta

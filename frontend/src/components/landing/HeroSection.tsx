@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom"
-import { Heart} from "lucide-react"
+import { Link } from "react-router-dom";
+import { Heart } from "lucide-react";
 
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       <div className="mx-auto max-w-6xl px-6 py-20 text-center">
-
         <div className="mb-8 inline-flex items-center gap-2 rounded-full bg-muted/50 px-4 py-2 text-sm font-medium text-ring">
           <Heart className="h-4 w-4" />
           <span>Terapia Comportamental Dialética (DBT)</span>
@@ -24,7 +23,7 @@ export function HeroSection() {
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
-            to="/signup"
+            to="/users"
             className="rounded-xl bg-primary px-8 py-3.5 text-white font-semibold shadow-lg hover:-translate-y-0.5 transition"
           >
             Criar minha conta
@@ -37,8 +36,7 @@ export function HeroSection() {
             Já tenho conta
           </Link>
         </div>
-
       </div>
     </section>
-  )
+  );
 }

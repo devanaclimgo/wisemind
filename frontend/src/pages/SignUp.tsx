@@ -28,7 +28,7 @@ export default function Signup() {
     try {
       setLoading(true);
 
-      await api.post("/signup", {
+      await api.post("/users", {
         user: {
           email,
           username: login,
@@ -51,7 +51,9 @@ export default function Signup() {
           setErrorMessage("Não foi possível criar uma conta.");
         }
       } else {
-        setErrorMessage("Algo deu errado. Por favor, tente novamente mais tarde.");
+        setErrorMessage(
+          "Algo deu errado. Por favor, tente novamente mais tarde.",
+        );
       }
     } finally {
       setLoading(false);
@@ -62,7 +64,10 @@ export default function Signup() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary to-white px-6">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <Link to="/" className="inline-flex items-center gap-2 mb-4 bg-white/80 px-3 py-2 rounded-xl">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 mb-4 bg-white/80 px-3 py-2 rounded-xl"
+          >
             <div className="h-8 w-8 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">
                 <img src={lotusIcon} alt="Lotus Icon" className="h-8 w-8" />
@@ -73,9 +78,7 @@ export default function Signup() {
             </span>
           </Link>
 
-          <h1 className="text-2xl font-bold text-gray-200">
-            Crie sua conta
-          </h1>
+          <h1 className="text-2xl font-bold text-gray-200">Crie sua conta</h1>
           <p className="mt-1 text-sm text-gray-100">
             Comece sua jornada de rastreamento emocional
           </p>

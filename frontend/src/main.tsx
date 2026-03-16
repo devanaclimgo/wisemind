@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/users" element={<Signup />} />
         <Route path="/weeks/new" element={<CreateWeek />} />
         <Route path="/weeks/:id" element={<WeekDetails />} />
       </Routes>
