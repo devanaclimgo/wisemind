@@ -15,7 +15,7 @@ export function CtaSection() {
           </p>
 
           <Link
-            to="/users"
+            to="/signup"
             className="mt-8 inline-flex items-center gap-2 rounded-xl bg-white px-8 py-3.5 font-semibold text-primary shadow-lg hover:-translate-y-0.5 transition"
           >
             Começar agora

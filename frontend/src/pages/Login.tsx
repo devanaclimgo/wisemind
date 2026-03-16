@@ -135,7 +135,7 @@ export default function Login() {
           <p className="text-sm text-center mt-6 text-gray-500">
             Não possui uma conta?{" "}
             <span
-              onClick={() => navigate("/users")}
+              onClick={() => navigate("/signup")}
               className="text-primary cursor-pointer hover:underline font-medium"
             >
               Criar conta

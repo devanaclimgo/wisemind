@@ -23,7 +23,7 @@ export function HeroSection() {
 
         <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
-            to="/users"
+            to="/signup"
             className="rounded-xl bg-primary px-8 py-3.5 text-white font-semibold shadow-lg hover:-translate-y-0.5 transition"
           >
             Criar minha conta
