@@ -83,9 +83,9 @@ export function exportWeekToPDF(week: {
     },
     columnStyles: {
       0: { cellWidth: 18 }, // day
-      1: { cellWidth: 40 }, // sleep
-      2: { cellWidth: 40 }, // health
-      3: { cellWidth: 40 }, // exercise
+      1: { cellWidth: 33 }, // sleep
+      2: { cellWidth: 33 }, // health
+      3: { cellWidth: 33 }, // exercise
       4: { cellWidth: 40 }, // food
       5: { cellWidth: 40 }, // substances
       6: { cellWidth: 22 }, // notes
