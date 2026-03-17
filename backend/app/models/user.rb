@@ -11,7 +11,7 @@ class User < ApplicationRecord
   attr_writer :login
 
   def login
-    @login || username || email
+    @login || self.username || self.email
   end
 
   def self.find_for_database_authentication(warden_conditions)
@@ -19,8 +19,7 @@ class User < ApplicationRecord
     login = conditions.delete(:login)
 
     where(conditions).where(
-      ["lower(username) = :value OR lower(email) = :value",
-      { value: login.downcase }]
+      ["lower(username) = :value OR lower(email) = :value", { value: login.downcase }]
     ).first
   end
 end
