@@ -22,22 +22,65 @@ export default function Dashboard() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [weeks, setWeeks] = useState<ApiWeek[]>([]);
   const [apiError, setApiError] = useState(false);
+  const [isWakingUp, setIsWakingUp] = useState(false);
+  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    api
-      .get("/api/v1/weeks")
-      .then((res) => setWeeks(res.data))
-      .catch((err) => {
+    const fetchData = async () => {
+      try {
+        const res = await api.get("/api/v1/weeks");
+        setWeeks(res.data);
+        setApiError(false);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      } catch (err: any) {
         if (err.response?.status === 401) {
           localStorage.removeItem("token");
           navigate("/");
+        } else if (!err.response) {
+          // 💤 servidor dormindo
+          setIsWakingUp(true);
+
+          // tenta de novo automaticamente
+          setTimeout(fetchData, 3000);
         } else {
           setApiError(true);
         }
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, [navigate]);
 
+  // loading inicial
+  if (loading && !isWakingUp) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-gray-500">
+        Carregando...
+      </div>
+    );
+  }
+
+  // servidor acordando (Render)
+  if (isWakingUp) {
+    return (
+      <div className="min-h-screen flex items-center justify-center text-center p-6">
+        <div>
+          <h2 className="text-lg font-semibold text-primary mb-2">
+            Acordando o servidor... 💤
+          </h2>
+          <p className="text-sm text-gray-500">
+            Isso pode levar alguns segundos ☕
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  // erro real
   if (apiError) {
     return (
       <div className="p-6 text-center text-red-500">
