@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", as: :rails_health_check
   get "/health", to: proc { [200, {}, ["ok"]] }
+  get "/ping", to: proc { [200, {}, ["pong"]] }
 
   namespace :api do
     namespace :v1 do
