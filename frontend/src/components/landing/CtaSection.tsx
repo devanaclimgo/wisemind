@@ -21,6 +21,21 @@ export function CtaSection() {
             Começar agora
             <ArrowRight className="h-4 w-4" />
           </Link>
+
+          <p className="absolute bottom-4 text-center w-full">
+            <em className="text-[0.6rem] text-muted-foreground mt-12">
+              Desenvolvido por{" "}
+              <a
+                href="https://github.com/devanaclimgo"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                Ana Gomes
+              </a>
+              .
+            </em>
+          </p>
         </div>
       </div>
     </section>
