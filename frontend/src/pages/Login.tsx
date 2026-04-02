@@ -16,28 +16,31 @@ export default function Login() {
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
     setErrorMessage("");
+    setLoading(true);
 
     try {
-      setLoading(true);
-
       const response = await api.post("/login", {
         user: { login, password },
       });
 
-      const token = response.headers.authorization;
+      const token =
+        response.headers?.authorization ||
+        response.data?.token;
 
       if (token) {
         localStorage.setItem("token", token);
+      } else {
+        throw new Error("Token não recebido");
       }
 
       navigate("/dashboard");
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response?.status === 401) {
         setErrorMessage("Login ou senha incorretos.");
       } else {
         setErrorMessage(
-          "Algo deu errado. Por favor, tente novamente mais tarde.",
+          "Erro ao entrar. Tente novamente mais tarde."
         );
       }
     } finally {

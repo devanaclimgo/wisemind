@@ -10,10 +10,13 @@ class Users::SessionsController < Devise::SessionsController
   end
 
   def respond_with(resource, _opts = {})
+    token = request.env['warden-jwt_auth.token']
+
     if resource.persisted?
       render json: {
         message: 'Logged in successfully',
-        user: resource
+        user: resource,
+        token: token
       }, status: :ok
     else
       render json: {

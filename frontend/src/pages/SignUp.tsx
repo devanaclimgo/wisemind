@@ -25,9 +25,9 @@ export default function Signup() {
       return;
     }
 
-    try {
-      setLoading(true);
+    setLoading(true);
 
+    try {
       await api.post("/signup", {
         user: {
           email,
@@ -37,8 +37,8 @@ export default function Signup() {
         },
       });
 
-      navigate("/"); // back to login
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      navigate("/login");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.response?.status === 422) {
         const errors = error.response.data.errors;
@@ -46,14 +46,12 @@ export default function Signup() {
         if (errors?.email) {
           setErrorMessage("Este email já está em uso.");
         } else if (errors?.username) {
-          setErrorMessage("Este nome de usuário já está em uso.");
+          setErrorMessage("Nome de usuário já está em uso.");
         } else {
-          setErrorMessage("Não foi possível criar uma conta.");
+          setErrorMessage("Erro ao criar conta.");
         }
       } else {
-        setErrorMessage(
-          "Algo deu errado. Por favor, tente novamente mais tarde.",
-        );
+        setErrorMessage("Erro inesperado. Tente novamente.");
       }
     } finally {
       setLoading(false);
