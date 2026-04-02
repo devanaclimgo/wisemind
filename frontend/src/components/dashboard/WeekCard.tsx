@@ -38,7 +38,7 @@ export default function WeekCard({
       <ProgressBar filled={filledDays} total={totalDays} />
 
       {isComplete && (
-        <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-ring px-2.5 py-0.5 text-xs font-medium text-ring/70">
+        <div className="mt-3 inline-flex items-center gap-1 rounded-full bg-ring/10 px-2.5 py-0.5 text-xs font-medium text-ring/70">
           Semana completa
         </div>
       )}
