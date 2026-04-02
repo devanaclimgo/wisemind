@@ -9,12 +9,6 @@ class Users::SessionsController < Devise::SessionsController
     }, status: :ok
   end
 
-  def respond_to_on_destroy
-    render json: {
-      message: 'Logged out successfully'
-    }, status: :ok
-  end
-
   def respond_with(resource, _opts = {})
     if resource.persisted?
       render json: {
