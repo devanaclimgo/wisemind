@@ -36,7 +36,7 @@ export default function CreateWeek() {
         <form onSubmit={handleCreate}>
           <input
             type="date"
-            className="w-full mb-6 p-3 rounded-xl border border-primary focus:ring-2 focus:ring-primary outline-none transition"
+            className="w-full mb-6 p-3 mr-2 rounded-xl border border-primary focus:ring-2 focus:ring-primary outline-none transition"
             onChange={(e) => setStartDate(e.target.value)}
           />
 
