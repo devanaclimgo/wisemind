@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Plus } from "lucide-react";
 import WeekCard from "./WeekCard";
+import { useEffect, useState } from "react";
 
 interface Week {
   id: number;
@@ -13,6 +14,38 @@ interface WeekListProps {
 }
 
 export default function WeekList({ weeks }: WeekListProps) {
+  const [range, setRange] = useState<"7" | "15" | "30" | "month" | "all">(
+    "all",
+  );
+  const filteredWeeks = filterWeeks(weeks, range);
+
+  function filterWeeks(weeks: Week[], range: string) {
+    const now = new Date();
+
+    return weeks.filter((week: { start_date: string | number | Date }) => {
+      const start = new Date(week.start_date);
+      const diff = (now.getTime() - start.getTime()) / (1000 * 60 * 60 * 24);
+
+      if (range === "7") return diff <= 7;
+      if (range === "15") return diff <= 15;
+      if (range === "30") return diff <= 30;
+      if (range === "month") {
+        return (
+          start.getMonth() === now.getMonth() &&
+          start.getFullYear() === now.getFullYear()
+        );
+      }
+      return true;
+    });
+  }
+
+  const saved = localStorage.getItem("weekFilter");
+  if (saved) setRange(saved as typeof range);
+
+  useEffect(() => {
+    localStorage.setItem("weekFilter", range);
+  }, [range]);
+
   return (
     <div className="space-y-5">
       <div className="flex items-center justify-between">
@@ -35,15 +68,40 @@ export default function WeekList({ weeks }: WeekListProps) {
         </div>
       </Link>
 
-      <div className="space-y-3">
-        {weeks.map((week) => (
-          <WeekCard
-            key={week.id}
-            id={week.id}
-            startDate={week.start_date}
-            filledDays={week.filledDays}
-          />
+      <div className="flex gap-2 flex-wrap mt-2">
+        {[
+          { label: "7d", value: "7" },
+          { label: "15d", value: "15" },
+          { label: "30d", value: "30" },
+          { label: "Mês", value: "month" },
+          { label: "Tudo", value: "all" },
+        ].map((item) => (
+          <button
+            key={item.value}
+            onClick={() => setRange(item.value as typeof range)}
+            className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all
+        ${
+          range === item.value
+            ? "bg-ring text-white"
+            : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+        }`}
+          >
+            {item.label}
+          </button>
         ))}
+      </div>
+
+      <div className="space-y-3">
+        {filteredWeeks.map(
+          (week: { id: number; start_date: string; filledDays: number }) => (
+            <WeekCard
+              key={week.id}
+              id={week.id}
+              startDate={week.start_date}
+              filledDays={week.filledDays}
+            />
+          ),
+        )}
       </div>
     </div>
   );
