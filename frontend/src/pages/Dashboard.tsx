@@ -91,11 +91,16 @@ export default function Dashboard() {
     );
   }
 
-  const formattedWeeks = weeks.map((week: ApiWeek) => ({
-    id: week.id,
-    start_date: week.start_date,
-    filledDays: week.day_entries.filter(isDayFilled).length,
-  }));
+  const formattedWeeks = weeks
+    .map((week: ApiWeek) => ({
+      id: week.id,
+      start_date: week.start_date,
+      filledDays: week.day_entries.filter(isDayFilled).length,
+    }))
+    .sort(
+      (a, b) =>
+        new Date(b.start_date).getTime() - new Date(a.start_date).getTime(),
+    );
 
   return (
     <div className="min-h-screen bg-gray-50">
