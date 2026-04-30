@@ -1,6 +1,6 @@
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins ENV.fetch("FRONTEND_URL")
+    origins "https://ancora-front-production.up.railway.app"
 
     resource "*",
       headers: :any,
