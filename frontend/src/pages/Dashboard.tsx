@@ -6,6 +6,7 @@ import WeekList from "../components/dashboard/WeekList";
 import { isDayFilled } from "../hooks/days-filled";
 import { useNavigate } from "react-router-dom";
 import ErrorState from "../components/ErrorState";
+import { CurrentWeekHabits } from "../components/dashboard/CurrentWeekHabits";
 
 type DayEntry = {
   id: number;
@@ -13,10 +14,14 @@ type DayEntry = {
   filled: boolean;
 };
 
-interface ApiWeek {
+export interface ApiWeek {
   id: number;
   start_date: string;
   day_entries: DayEntry[];
+  habits: {
+    name: string;
+    days: boolean[];
+  }[];
 }
 
 export default function Dashboard() {
@@ -102,12 +107,15 @@ export default function Dashboard() {
         new Date(b.start_date).getTime() - new Date(a.start_date).getTime(),
     );
 
+  const currentWeek = weeks[0];
+
   return (
     <div className="min-h-screen bg-gray-50">
       <DashboardHeader onMenuToggle={() => setMenuOpen(true)} />
       <SliderMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
       <main className="max-w-5xl mx-auto px-4 py-8">
+        <CurrentWeekHabits week={currentWeek} />
         <WeekList weeks={formattedWeeks} />
       </main>
     </div>
