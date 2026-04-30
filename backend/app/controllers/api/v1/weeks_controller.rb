@@ -1,7 +1,6 @@
 module Api
   module V1
     class WeeksController < BaseController
-
       def index
         weeks = current_user.weeks.recent_first.includes(:day_entries)
         render json: weeks, include: :day_entries
@@ -22,6 +21,16 @@ module Api
         end
       end
 
+      def update
+        week = current_user.weeks.find(params[:id])
+
+        if week.update(week_params)
+          render json: week
+        else
+          render json: { errors: week.errors.full_messages }, status: :unprocessable_entity
+        end
+      end
+
       def destroy
         week = current_user.weeks.find(params[:id])
         week.destroy
@@ -31,7 +40,13 @@ module Api
       private
 
       def week_params
-        params.require(:week).permit(:start_date)
+        params.require(:week).permit(
+          :start_date,
+          habits: [
+            :name,
+            { days: [] }
+          ]
+        )
       end
     end
   end
