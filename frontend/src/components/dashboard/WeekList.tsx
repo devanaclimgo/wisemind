@@ -15,8 +15,27 @@ interface WeekListProps {
 
 export default function WeekList({ weeks }: WeekListProps) {
   const [range, setRange] = useState<"7" | "15" | "30" | "month" | "all">(
-    "all",
+    () => {
+      const saved = localStorage.getItem("weekFilter");
+
+      if (
+        saved === "7" ||
+        saved === "15" ||
+        saved === "30" ||
+        saved === "month" ||
+        saved === "all"
+      ) {
+        return saved;
+      }
+
+      return "all";
+    },
   );
+
+  useEffect(() => {
+    localStorage.setItem("weekFilter", range);
+  }, [range]);
+
   const filteredWeeks = filterWeeks(weeks, range);
 
   function filterWeeks(weeks: Week[], range: string) {
@@ -38,13 +57,6 @@ export default function WeekList({ weeks }: WeekListProps) {
       return true;
     });
   }
-
-  const saved = localStorage.getItem("weekFilter");
-  if (saved) setRange(saved as typeof range);
-
-  useEffect(() => {
-    localStorage.setItem("weekFilter", range);
-  }, [range]);
 
   return (
     <div className="space-y-5">
