@@ -46,7 +46,6 @@ export default function WeekList({ weeks }: WeekListProps) {
           />
         ))}
       </div>
-      {/* TODO: adicionar exportação por PDF */}
     </div>
   );
 }
