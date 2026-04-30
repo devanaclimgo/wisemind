@@ -3,12 +3,12 @@ module Api
     class WeeksController < BaseController
 
       def index
-        weeks = current_user.weeks.includes(:day_entries)
+        weeks = current_user.weeks.recent_first.includes(:day_entries)
         render json: weeks, include: :day_entries
       end
 
       def show
-        week = current_user.weeks.find(params[:id])
+        week = current_user.weeks.recent_first.find(params[:id])
         render json: week, include: :day_entries
       end
 
