@@ -24,7 +24,10 @@ module Api
       def update
         week = current_user.weeks.find(params[:id])
 
+        Rails.logger.info "PARAMS: #{params[:week][:habits]}"
+
         if week.update(week_params)
+          Rails.logger.info "SAVED: #{week.habits}"
           render json: week
         else
           render json: { errors: week.errors.full_messages }, status: :unprocessable_entity
