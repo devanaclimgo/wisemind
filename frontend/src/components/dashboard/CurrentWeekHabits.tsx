@@ -1,14 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { cn } from "../../lib/cn";
 import api from "../../api/axios";
 import { type ApiWeek } from "../../pages/Dashboard";
-import {
-  Moon,
-  Salad,
-  Dumbbell,
-  ShieldOff,
-  HeartPulse,
-} from "lucide-react";
+import { Moon, Salad, Dumbbell, ShieldOff, HeartPulse } from "lucide-react";
+import axios from "axios";
 
 const defaultHabits = [
   { name: "8h de sono", icon: Moon },
@@ -26,13 +21,18 @@ type Habit = {
 };
 
 export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
-  const [habits, setHabits] = useState<Habit[]>(
-    week?.habits ||
-      defaultHabits.map((h) => ({
-        name: h.name,
-        days: Array(7).fill(false),
-      })),
-  );
+  const [habits, setHabits] = useState<Habit[]>([]);
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setHabits(
+      week?.habits?.length
+        ? week.habits
+        : defaultHabits.map((h) => ({
+            name: h.name,
+            days: Array(7).fill(false),
+          })),
+    );
+  }, [week.habits, week.id]);
 
   const toggleCheck = async (habitIndex: number, dayIndex: number) => {
     const updated = habits.map((habit, hi) =>
@@ -44,9 +44,21 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
         : habit,
     );
     setHabits(updated);
-    await api.patch(`/api/v1/weeks/${week.id}`, {
-      week: { habits: updated },
-    });
+    try {
+      const res = await api.patch(`/api/v1/weeks/${week.id}`, {
+        week: { habits: updated },
+      });
+
+      setHabits(res.data.habits);
+
+      console.log("SALVOU:", res.data);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        console.error(err.response?.data);
+      } else {
+        console.error(err);
+      }
+    }
   };
 
   const totalChecks = habits.reduce(
