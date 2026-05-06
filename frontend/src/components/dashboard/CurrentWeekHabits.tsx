@@ -68,6 +68,29 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
   const totalPossible = habits.length * 7;
   const progressPct = Math.round((totalChecks / totalPossible) * 100);
 
+  function buildCalendarData(weeks: ApiWeek[]) {
+    const map: Record<string, number> = {};
+
+    weeks.forEach((week) => {
+      if (!week.habits) return;
+
+      week.habits.forEach((habit) => {
+        habit.days.forEach((done, dayIndex) => {
+          if (!done) return;
+
+          const date = new Date(week.start_date);
+          date.setDate(date.getDate() + dayIndex);
+
+          const key = date.toISOString().split("T")[0];
+
+          map[key] = (map[key] || 0) + 1;
+        });
+      });
+    });
+
+    return map;
+  }
+
   return (
     <div className="rounded-2xl bg-card border border-border shadow-sm overflow-hidden">
       {/* Header */}
