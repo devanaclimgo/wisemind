@@ -7,7 +7,6 @@ import { isDayFilled } from "../hooks/days-filled";
 import { useNavigate } from "react-router-dom";
 import ErrorState from "../components/ErrorState";
 import { CurrentWeekHabits } from "../components/dashboard/CurrentWeekHabits";
-import HabitsCalendar from "../components/calendar/HabitsCalendar";
 
 type DayEntry = {
   id: number;
@@ -117,8 +116,6 @@ export default function Dashboard() {
 
       <main className="max-w-5xl mx-auto px-4 py-8">
         <CurrentWeekHabits week={currentWeek} />
-
-        <HabitsCalendar weeks={weeks} />
         
         <WeekList weeks={formattedWeeks} />
       </main>
