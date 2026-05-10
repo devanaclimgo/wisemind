@@ -34,6 +34,11 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
     );
   }, [week.habits, week.id]);
 
+  const todayIndex = (() => {
+    const jsDay = new Date().getDay();
+    return jsDay === 0 ? 6 : jsDay - 1;
+  })();
+
   const toggleCheck = async (habitIndex: number, dayIndex: number) => {
     const updated = habits.map((habit, hi) =>
       hi === habitIndex
@@ -100,10 +105,15 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
         {/* Days */}
         <div className="grid grid-cols-[1fr_repeat(7,2rem)] sm:grid-cols-[1fr_repeat(7,2.5rem)] gap-x-1 mb-3">
           <span />
-          {daysOfWeekFull.map((d) => (
+          {daysOfWeekFull.map((d, i) => (
             <span
               key={d}
-              className="text-center text-xs font-medium text-muted-foreground"
+              className={cn(
+                "text-center text-xs font-medium transition-colors",
+                i === todayIndex
+                  ? "text-ring font-semibold"
+                  : "text-muted-foreground",
+              )}
             >
               {d}
             </span>
@@ -147,7 +157,9 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
                       "h-8 w-8 rounded-full mx-auto flex items-center justify-center border-2 transition-all duration-150 active:scale-95",
                       checked
                         ? "bg-ring border-ring shadow-sm shadow-ring/30"
-                        : "border-border hover:border-ring/50 hover:bg-ring/5",
+                        : di === todayIndex
+                          ? "border-ring/40 bg-ring/8 hover:bg-ring/15"
+                          : "border-border hover:border-ring/50 hover:bg-ring/5",
                     )}
                   >
                     {checked && (
@@ -164,6 +176,9 @@ export function CurrentWeekHabits({ week }: { week: ApiWeek }) {
                           strokeLinejoin="round"
                         />
                       </svg>
+                    )}
+                    {!checked && di === todayIndex && (
+                      <span className="h-1.5 w-1.5 rounded-full bg-ring/40" />
                     )}
                   </button>
                 ))}
