@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import "./index.css";
 import LandingPage from "./pages/LandingPage";
 import { Calendar } from "./components/dashboard/Calendar";
+import CalendarPage from "./pages/Calendar";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <BrowserRouter>
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/weeks/new" element={<CreateWeek />} />
         <Route path="/weeks/:id" element={<WeekDetails />} />
         <Route path="/calendar" element={<Calendar weeks={[]} />} />
+        <Route path="/calendar" element={<CalendarPage />} />
       </Routes>
     </ErrorBoundary>
   </BrowserRouter>,
