@@ -1,17 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
-  X,
-  CalendarDays,
-  Layers,
-  HelpCircle,
-  Settings,
-  LogOut,
-  ChevronLeft,
-  // Bell,
-  // User,
-  // Lock,
-  // Trash2,
+  X, CalendarDays, Layers, HelpCircle,
+  Settings, LogOut, ChevronLeft, LayoutDashboard,
 } from "lucide-react";
 import { cn } from "../../lib/cn";
 
@@ -20,22 +11,33 @@ interface SliderMenuProps {
   onClose: () => void;
 }
 
-type MenuView = "main" | "calendar" | "weeks" | "support" | "settings" | "in-development";
-{/* TODO: criar páginas que faltam, tanto backend como frontend */}
-
 export default function SliderMenu({ open, onClose }: SliderMenuProps) {
-  const [view, setView] = useState<MenuView>("main");
+  const [view, setView] = useState<"main" | "in-development">("main");
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleClose = () => {
     onClose();
     setTimeout(() => setView("main"), 300);
   };
 
+  const handleNavigate = (path: string) => {
+    handleClose();
+    navigate(path);
+  };
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
   };
+
+  const navItems = [
+    { label: "Dashboard", icon: LayoutDashboard, path: "/dashboard" },
+    { label: "Calendário", icon: CalendarDays, path: "/calendar" },
+    { label: "Semanas", icon: Layers, path: null },
+    { label: "Suporte", icon: HelpCircle, path: null },
+    { label: "Configurações", icon: Settings, path: null },
+  ];
 
   return (
     <>
@@ -46,110 +48,82 @@ export default function SliderMenu({ open, onClose }: SliderMenuProps) {
         />
       )}
 
-      {/* TODO: refatorar cores e estilo geral do slider para melhor UI/UX */}
       <div
         className={cn(
-          "fixed left-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-white border-r border-gray-200 shadow-xl transition-transform duration-300 flex flex-col",
-          open ? "translate-x-0" : "-translate-x-full"
+          "fixed left-0 top-0 z-50 h-full w-80 max-w-[85vw] bg-card border-r border-border shadow-xl transition-transform duration-300 flex flex-col",
+          open ? "translate-x-0" : "-translate-x-full",
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-5 border-b border-gray-200">
+        <div className="flex items-center justify-between p-5 border-b border-border">
           {view !== "main" ? (
             <button
               onClick={() => setView("main")}
-              className="flex items-center gap-1 text-sm text-gray-500 hover:text-gray-800"
+              className="flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <ChevronLeft className="h-4 w-4" />
               Voltar
             </button>
           ) : (
-            <span className="font-semibold text-gray-800">Menu</span>
+            <span className="font-semibold text-foreground">Menu</span>
           )}
 
           <button
             onClick={handleClose}
-            className="h-8 w-8 flex items-center justify-center rounded-lg hover:bg-gray-100"
+            className="h-8 w-8 flex items-center justify-center rounded-lg hover:bg-muted transition-colors"
           >
             <X className="h-4 w-4" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-5">
+        <div className="flex-1 overflow-y-auto p-4">
           {view === "main" && (
-            <nav className="space-y-2">
-              <button
-                onClick={() => {handleClose(); navigate("/calendar")}}
-                className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100"
-              >
-                <CalendarDays className="h-4 w-4" />
-                Calendario
-              </button>
-
-              <button
-                onClick={() => setView("in-development")}
-                className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100"
-              >
-                <Layers className="h-4 w-4" />
-                Semanas
-              </button>
-
-              <button
-                onClick={() => setView("in-development")}
-                className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100"
-              >
-                <HelpCircle className="h-4 w-4" />
-                Suporte
-              </button>
-
-              <button
-                onClick={() => setView("in-development")}
-                className="w-full flex items-center gap-3 p-3 rounded-xl hover:bg-gray-100"
-              >
-                <Settings className="h-4 w-4" />
-                Configurações
-              </button>
+            <nav className="space-y-1">
+              {navItems.map(({ label, icon: Icon, path }) => {
+                const isActive = path && location.pathname === path;
+                return (
+                  <button
+                    key={label}
+                    onClick={() =>
+                      path ? handleNavigate(path) : setView("in-development")
+                    }
+                    className={cn(
+                      "w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm transition-colors",
+                      isActive
+                        ? "bg-ring/10 text-ring font-medium"
+                        : "text-foreground hover:bg-muted",
+                    )}
+                  >
+                    <Icon
+                      className={cn(
+                        "h-4 w-4 shrink-0",
+                        isActive ? "text-ring" : "text-muted-foreground",
+                      )}
+                    />
+                    {label}
+                    {isActive && (
+                      <span className="ml-auto h-1.5 w-1.5 rounded-full bg-ring" />
+                    )}
+                  </button>
+                );
+              })}
             </nav>
           )}
 
-          {
-            view === "in-development" && (
-              <div className="text-center text-gray-500 mt-10">
-                <p className="text-lg">🚧 Em desenvolvimento 🚧</p>
-              </div>
-            )}
-
-          {/* {view === "settings" && (
-            <div className="space-y-4">
-              <div className="rounded-xl border p-4 flex items-center gap-3">
-                <Bell className="h-4 w-4 text-gray-500" />
-                <span className="text-sm">Notificações</span>
-              </div>
-
-              <div className="rounded-xl border p-4 flex items-center gap-3">
-                <User className="h-4 w-4 text-gray-500" />
-                <span className="text-sm">Alterar username</span>
-              </div>
-
-              <div className="rounded-xl border p-4 flex items-center gap-3">
-                <Lock className="h-4 w-4 text-gray-500" />
-                <span className="text-sm">Alterar senha</span>
-              </div>
-
-              <button className="w-full border-2 border-red-300 p-3 rounded-xl text-red-500 hover:bg-red-50 flex items-center justify-center gap-2">
-                <Trash2 className="h-4 w-4" />
-                Excluir conta
-              </button>
+          {view === "in-development" && (
+            <div className="text-center text-muted-foreground mt-10">
+              <p className="text-lg">🚧 Em desenvolvimento</p>
+              <p className="text-sm mt-2">Em breve por aqui!</p>
             </div>
-          )} */}
+          )}
         </div>
 
         {/* Logout */}
-        <div className="border-t p-5">
+        <div className="border-t border-border p-4">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center justify-center gap-2 rounded-xl bg-gray-100 py-2.5 hover:bg-red-50 hover:text-red-600 transition-colors"
+            className="w-full flex items-center justify-center gap-2 rounded-xl bg-muted py-2.5 text-sm hover:bg-destructive/10 hover:text-destructive transition-colors"
           >
             <LogOut className="h-4 w-4" />
             Sair
