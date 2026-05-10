@@ -114,7 +114,7 @@ export default function Dashboard() {
       <DashboardHeader onMenuToggle={() => setMenuOpen(true)} />
       <SliderMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      <main className="max-w-5xl mx-auto px-4 py-8">
+      <main className="max-w-5xl mx-auto px-4 py-8 gap-2 flex flex-col">
         <CurrentWeekHabits week={currentWeek} />
         
         <WeekList weeks={formattedWeeks} />
