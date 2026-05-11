@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_05_01_230128) do
+ActiveRecord::Schema[8.1].define(version: 2026_05_11_213215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -26,6 +26,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_230128) do
     t.datetime "updated_at", null: false
     t.bigint "week_id", null: false
     t.index ["week_id"], name: "index_day_entries_on_week_id"
+  end
+
+  create_table "habit_entries", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.date "date", null: false
+    t.boolean "done", default: false
+    t.string "habit_name", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_habit_entries_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -54,5 +64,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_05_01_230128) do
   end
 
   add_foreign_key "day_entries", "weeks"
+  add_foreign_key "habit_entries", "users"
   add_foreign_key "weeks", "users"
 end
