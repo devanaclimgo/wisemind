@@ -7,6 +7,7 @@ class User < ApplicationRecord
          jwt_revocation_strategy: Devise::JWT::RevocationStrategies::Null
 
   has_many :weeks, -> { order(:created_at) }, dependent: :destroy
+  has_many :habit_entries, dependent: :destroy
 
   validates :email, presence: true, uniqueness: true
   validates :username, presence: true, uniqueness: true
